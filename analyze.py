@@ -80,5 +80,14 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": prompt}]
 )
 
-# Вывод результата
-print(response.choices[0].message.content)
+analysis_result = response.choices[0].message.content
+
+# Выводим в консоль
+print("\n===== Результат анализа =====\n")
+print(analysis_result)
+
+# Сохраняем в файл
+with open("analysis.txt", "w", encoding="utf-8") as f:
+    f.write(analysis_result)
+
+print("\nРезультат сохранён в analysis.txt")
