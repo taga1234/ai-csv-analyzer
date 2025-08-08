@@ -7,7 +7,7 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       models: read
     steps:
       - uses: actions/checkout@v4
@@ -17,3 +17,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python analyze.py
+      - name: Commit analysis result
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add analysis.txt
+          git commit -m "Add AI analysis result" || echo "No changes to commit"
+          git push
