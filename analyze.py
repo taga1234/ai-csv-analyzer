@@ -3,7 +3,7 @@ import pandas as pd
 from openai import OpenAI
 
 # Читаем CSV
-df = pd.read_csv("transactions.csv")
+df = pd.read_csv("data.csv")
 
 # Формируем текст запроса для модели
 prompt = f"""
@@ -24,4 +24,5 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": prompt}]
 )
 
-print(response.choices[0].message["content"])
+# Вывод результата
+print(response.choices[0].message.content)
