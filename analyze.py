@@ -3,7 +3,7 @@ import pandas as pd
 from openai import OpenAI
 
 # Читаем CSV
-df = pd.read_csv("data.csv")
+df = pd.read_csv("transactions.csv")
 
 # Формируем текст запроса для модели
 prompt = f"""
